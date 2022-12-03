@@ -1,0 +1,78 @@
+<div class="container">
+    <div>
+        <h1>Formulario</h1>
+    </div>
+    <form [formGroup]="formulario">
+        <!-- INPUT PARA Campo1-->
+        <div class="form-group">    
+            <div>
+                <label>Campo1</label>
+                <!-- INPUT para el campo nombre-->
+                <input
+                    type="text"
+                    placeholder="Ingresa Valor Campo1"
+                    formControlName ="campo1"
+                    required
+                >
+                <!-- Mostrar el error para el campo nombre-->
+                <small *ngIf=" formularioReactivo.campo1?.errors?.required && formularioReactivo.campo1.touched ">
+                    El nombre es requerido
+                </small>
+            </div>
+        </div>
+        <!-- FIN INPUT PARA Campo1-->
+
+        <!-- INPUT PARA Campo2-->
+        <div class="form-group">
+            <div>
+                <label>Campo2</label>
+                <!-- INPUT para el campo apellido-->
+                <input
+                    type="text"
+                    placeholder="Ingresa tu apellido"
+                    formControlName ="campo2"
+                >
+                <!-- Mostrar el error para el campo apellido-->
+            </div>
+        </div>
+        <!-- FIN INPUT PARA CAMPO2-->
+
+        <!-- BOTÓN-->
+        <div class="form-group">
+            <div>
+                <button 
+                class="btn btn-primary" 
+                type="submit"
+                (click)="botonEnviar()"
+                [disabled]="!formulario.valid"
+                >Enviar</button>
+            </div>
+        </div>
+        <!-- FIN BOTÓN-->
+        
+    
+    </form>
+    <button (click)= "obtener_registros()" >Obtener registros</button>
+
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Campo1</th>
+            <th scope="col">Campo2</th>
+            <th scope="col">Acción</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let dato of registros">
+            <th scope="row">{{dato._id}}</th>
+            <td>{{dato.campo1}}</td>
+            <td>{{dato.campo2}}</td>
+            <td> <button>Eliminar</button> </td>
+          </tr>
+        </tbody>
+      </table>
+
+</div>
+
+
